@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  temp_name: animal_one
+  medical_condition: healthy
+  image_url: MyString.png
+  status: adoptable
+  race: corgi
+  shelter: one
+
+two:
+  temp_name: MyString
+  medical_condition: MyString
+  image_url: MyString.png
+  status: adoptable
+  race: MyString
+  shelter: two

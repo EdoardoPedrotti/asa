@@ -12,7 +12,8 @@ class WorkersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create worker" do
     assert_difference('Worker.count') do
-      post workers_url, params: { worker: { age: @worker.age, fist_name: @worker.fist_name, last_name: @worker.last_name } }, as: :json
+      p @worker.inspect
+      post workers_url, params: { worker: { age: @worker.age, fist_name: @worker.fist_name, last_name: @worker.last_name, shelter_id: @worker.shelter_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +25,7 @@ class WorkersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update worker" do
-    patch worker_url(@worker), params: { worker: { age: @worker.age, fist_name: @worker.fist_name, last_name: @worker.last_name } }, as: :json
+    patch worker_url(@worker), params: { worker: { age: @worker.age, fist_name: @worker.fist_name, last_name: @worker.last_name, shelter_id: @worker.shelter_id } }, as: :json
     assert_response 200
   end
 

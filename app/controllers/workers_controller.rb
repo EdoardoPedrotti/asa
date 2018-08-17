@@ -15,11 +15,17 @@ class WorkersController < ApplicationController
 
   # POST /workers
   def create
+    p worker_params
     @worker = Worker.new(worker_params)
+    # p @worker.inspect
+    # shelter = Shelter.find(worker_params["shelter_id"])
+    # @worker.shelter =  shelter
+
 
     if @worker.save
       render json: @worker, status: :created, location: @worker
     else
+      p @worker.errors
       render json: @worker.errors, status: :unprocessable_entity
     end
   end
@@ -29,6 +35,7 @@ class WorkersController < ApplicationController
     if @worker.update(worker_params)
       render json: @worker
     else
+      p @worker.errors
       render json: @worker.errors, status: :unprocessable_entity
     end
   end
@@ -46,6 +53,6 @@ class WorkersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def worker_params
-      params.require(:worker).permit(:fist_name, :last_name, :age)
+      params.require(:worker).permit(:fist_name, :last_name, :age, :shelter_id)
     end
 end

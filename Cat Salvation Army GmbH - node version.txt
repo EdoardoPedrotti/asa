@@ -4,15 +4,15 @@ General description:
 	The website will be composed of two different sections, one for shelter workers and one for adoption interested users (from now on animal lovers).
 
 	This website should let our customer to:
-		- create an animal shelter
-		- remove an animal shelter
-		- add a new animal shelter worker to an animal shelter
-		- remove a shelter worker from the system;
+		- create an animal shelter ✓
+		- remove an animal shelter ✓
+		- add a new animal shelter worker to an animal shelter ✓
+		- remove a shelter worker from the system; ✓
 	This website should let animal shelters workers to:
-		- browse the list of animals present in the shelter;
-		- see the animal details page with the information already present in the system for that animal;
+		- browse the list of animals present in the shelter; ✓
+		- see the animal details page with the information already present in the system for that animal; ✓
 		- see if somebody is interested in adopting an animal, with the contact information for that person;
-		- add new animal providing the animal picture, medical condition, current temporary name and supposed race;
+		- add new animal providing the animal picture, medical condition, current temporary name and supposed race; ✓
 		- remove an animal from the shelter list (orray! we succeeded!!!);
 		- report animal as adoptable;
 		- remove the pending adoption request for an animal (doh! we need to keep looking for the right animal lover!);
