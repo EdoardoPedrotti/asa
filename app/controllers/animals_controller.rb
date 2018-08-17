@@ -4,7 +4,7 @@ class AnimalsController < ApplicationController
 
   # GET /animals
   def index
-    p params
+
     if params[:shelter_id] != nil
       @animals = Animal.where(:shelter_id => params[:shelter_id])
     else

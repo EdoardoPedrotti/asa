@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firts_name: primo
+  last_name: MyString
+  description: MyString
+
+two:
+  firts_name: secondo
+  last_name: MyString
+  description: MyString

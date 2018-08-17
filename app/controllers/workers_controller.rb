@@ -15,11 +15,9 @@ class WorkersController < ApplicationController
 
   # POST /workers
   def create
-    p worker_params
+
     @worker = Worker.new(worker_params)
-    # p @worker.inspect
-    # shelter = Shelter.find(worker_params["shelter_id"])
-    # @worker.shelter =  shelter
+
 
 
     if @worker.save

@@ -3,6 +3,8 @@ class Animal < ApplicationRecord
 
 	belongs_to :shelter
 
+	has_many :adoption_requests
+
 	validates_presence_of :shelter
 
 	validates :temp_name, :status, presence: true

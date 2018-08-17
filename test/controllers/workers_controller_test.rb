@@ -12,7 +12,7 @@ class WorkersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create worker" do
     assert_difference('Worker.count') do
-      p @worker.inspect
+
       post workers_url, params: { worker: { age: @worker.age, fist_name: @worker.fist_name, last_name: @worker.last_name, shelter_id: @worker.shelter_id } }, as: :json
     end
 
