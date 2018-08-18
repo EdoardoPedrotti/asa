@@ -45,7 +45,7 @@ class AdoptionRequestsController < ApplicationController
 
     @adoption_requests = AdoptionRequest.joins(:user, :animal).where(:animal_id => @animals)
 
-    p @adoption_requests.inspect
+
 
     render json: @adoption_requests
 

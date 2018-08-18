@@ -38,10 +38,7 @@ class AdoptionRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get shelter requests" do
-    p adoption_requests_shelter_url(@shelter)
     get adoption_requests_shelter_url(@shelter), as: :json
-    p "aaaaaaaaaaaaa"
-    p response.body
     reqs = JSON.parse response.body
     assert_equal 1, reqs.length
   end

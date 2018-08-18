@@ -11,11 +11,11 @@ General description:
 	This website should let animal shelters workers to:
 		- browse the list of animals present in the shelter; ✓
 		- see the animal details page with the information already present in the system for that animal; ✓
-		- see if somebody is interested in adopting an animal, with the contact information for that person;
+		- see if somebody is interested in adopting an animal, with the contact information for that person; ✓
 		- add new animal providing the animal picture, medical condition, current temporary name and supposed race; ✓
-		- remove an animal from the shelter list (orray! we succeeded!!!);
-		- report animal as adoptable;
-		- remove the pending adoption request for an animal (doh! we need to keep looking for the right animal lover!);
+		- remove an animal from the shelter list (orray! we succeeded!!!); ✓
+		- report animal as adoptable; ✓
+		- remove the pending adoption request for an animal (doh! we need to keep looking for the right animal lover!); ✓
 	This website should let animal lovers interested in adoptions to:
 		- browse the list of adoptable animals, filtering by shelter name and by already pending adoption;
 		- see the animal details page with the information provided by the shelter worker;

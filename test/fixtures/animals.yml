@@ -15,3 +15,10 @@ two:
   status: adoptable
   race: MyString
   shelter: two
+three:
+  temp_name: animal_three
+  medical_condition: MyString
+  image_url: MyString.png
+  status: unadoptable
+  race: MyString
+  shelter: one

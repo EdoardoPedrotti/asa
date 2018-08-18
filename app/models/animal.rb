@@ -3,7 +3,7 @@ class Animal < ApplicationRecord
 
 	belongs_to :shelter
 
-	has_many :adoption_requests
+	has_many :adoption_requests, dependent: :destroy
 
 	validates_presence_of :shelter
 
@@ -15,4 +15,8 @@ class Animal < ApplicationRecord
 	  with: %r{\.(gif|jpg|png)\Z}i,
 	  message: 'Animal image must be a GIF, JPG or PNG'
 	}
+
+	def make_adoptable
+		self.status = "adoptable"
+	end
 end

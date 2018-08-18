@@ -4,6 +4,8 @@ class AnimalsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @animal = animals(:one)
     @shelter = shelters(:one)
+    @unadoptable = animals(:three)
+    @adoption_request = adoption_requests(:one)
   end
 
   test "should get index" do
@@ -15,7 +17,7 @@ class AnimalsControllerTest < ActionDispatch::IntegrationTest
     get shelter_animals_url(@shelter)
     animals =  JSON.parse response.body
 
-    assert_equal 1, animals.length
+    assert_equal 2, animals.length
   end
 
   test "should create animal" do
@@ -45,4 +47,23 @@ class AnimalsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response 204
   end
+
+  test "should make animal adoptable" do 
+    patch  animal_adoptable_url(@unadoptable), as: :json
+
+    assert_response 200
+    animal = JSON.parse response.body
+    assert_equal  "adoptable" , animal["status"]
+    
+  end
+
+
+  test "should remove request from adoption request list" do
+    assert_difference('@animal.adoption_requests.count', -1) do
+    delete animal_adoption_request_remove_url(@animal, @adoption_request), as: :json
+    assert_response 200
+   end
+  end
+
+
 end

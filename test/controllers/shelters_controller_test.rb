@@ -3,6 +3,7 @@ require 'test_helper'
 class SheltersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @shelter = shelters(:one)
+    @animal = animals(:one)
   end
 
   test "should get index" do
@@ -35,4 +36,13 @@ class SheltersControllerTest < ActionDispatch::IntegrationTest
 
     assert_response 204
   end
+
+  test "should remove animal from shelter list" do
+   assert_difference('@shelter.animals.count', -1) do
+    delete shelter_animal_remove_url(@shelter, @animal), as: :json
+    assert_response 200
+   end
+    
+  end
+
 end
