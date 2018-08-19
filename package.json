@@ -1,5 +1,5 @@
 {
 	"scripts":{
-		"test": "bin/rails test"
+		"test": "rails test"
 	}
 }
