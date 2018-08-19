@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :adoption_requests
   resources :users
   resources :animals do
-    patch 'adoptable', to: 'animals#make_adoptable'
+    put 'adoptable', to: 'animals#make_adoptable'
     resources :adoption_requests, :except => [:index, :show, :create, :update, :destroy] do
       delete 'remove', to: 'animals#remove_request'
     end
@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   resources :shelters do
   	member do
   			get 'adoption_requests', to: 'adoption_requests#get_shelter_requests'
-  	end
-    resources :animals, :except => [:destroy,:create, :update,] do
+    end
+    
+    resources :animals, :except => [:destroy,:create, :update,:show] do
       delete 'remove', to: 'shelters#remove_animal'
       # delete '', to: 'shelters#remove_animal'
     end

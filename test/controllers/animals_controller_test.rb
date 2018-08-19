@@ -22,7 +22,7 @@ class AnimalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create animal" do
     assert_difference('Animal.count') do
-
+      p @animal
       post animals_url, params: { animal: { image_url: @animal.image_url, medical_condition: @animal.medical_condition, race: @animal.race, shelter_id: @animal.shelter_id, status: @animal.status, temp_name: @animal.temp_name } }, as: :json
     end
 
@@ -49,7 +49,7 @@ class AnimalsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should make animal adoptable" do 
-    patch  animal_adoptable_url(@unadoptable), as: :json
+    put  animal_adoptable_url(@unadoptable), as: :json
 
     assert_response 200
     animal = JSON.parse response.body

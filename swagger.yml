@@ -1,0 +1,739 @@
+swagger: "2.0"
+info:
+  description: "New animal adoption website to streamline animal adoption process in Berlin."
+  version: "1.0.0"
+  title: "Animal Salvation Army"
+
+host: "localhost"
+basePath: "/"
+schemes:
+- "https"
+- "http"
+paths:
+  /animals:
+    post:
+      tags:
+      - "animals"
+      summary: "Add a new aniamal"
+      description: ""
+      operationId: "animals#create"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Animal object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Animal"
+      responses:
+        422:
+          description: "Invalid input"
+        201:
+          description: ""
+          schema:
+            $ref: "#/definitions/Animal"
+    get:
+      tags:
+      - "animals"
+      summary: "get all animals"
+      description: ""
+      operationId: "index"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Animal object that needs to be added to the store"
+        required: true
+        schema:
+          type: "array"
+          items:
+            $ref: "#/definitions/Animal"
+      responses:
+        404:
+          description: "Animal not found"
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Animal"
+    
+  /animals/{id}:
+    get:
+      tags:
+      - "animals"
+      summary: "Find animal by ID"
+      description: "Returns a single animal"
+      operationId: "animals#show"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of animal to return"
+        required: true
+        type: "integer"
+
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Animal"
+        404:
+          description: "Animal not found"
+    put:
+      tags:
+      - "animals"
+      summary: "Updates a animal in the store with form data"
+      description: ""
+      operationId: "animals#update"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of animal that needs to be updated"
+        required: true
+        type: "integer"
+      - name: "temp_ame"
+        in: "formData"
+        description: "Updated temporary name of the animal"
+        required: true
+        type: "string"
+      - name: "medical_condition"
+        in: "formData"
+        description: "Updated medical condition of the animal"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "formData"
+        description: "Updated status of the animal"
+        required: false
+        type: "string"
+      responses:
+        422:
+          description: ""
+    delete:
+      tags:
+      - "animals"
+      summary: "Deletes a animal"
+      description: ""
+      operationId: "animals#delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Animal id to delete"
+        required: true
+        type: "integer"
+
+      responses:
+        404:
+          description: "Animal not found"
+  /animals/{id}/adoptable:
+    put:
+      tags:
+        - "animals"
+      summary: "mark animal as adoptable"
+      description: "marks animal as adoptable"
+      operationId: "animals#make_adoptable"
+      produces:
+        - "application/json"
+      parameters:
+      - in: "path"
+        name: "id"
+        description: "animal id"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "animal is adoptable"
+        422:
+          description: ""
+
+  /animals/{id}/adoption_requests/{adoption_request_id}/remove:
+    delete:
+      tags: 
+      - "animals"
+      summary: "remove a adoption requests of an animal"
+      description: "remove a adoption requests of an animal"
+      operationId: "animals#remove_request"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "animal id"
+          type: "integer"
+          required: true
+        - in: "path"
+          name: "adoption_request_id"
+          description: "adoption request id"
+          required: true  
+          type: "integer"
+      responses:
+        200:
+          description:
+            "adoption request deleted"
+
+
+  /users:
+    post:
+      tags:
+      - "users"
+      summary: "Create users"
+      description: "This can only be done by the logged in users."
+      operationId: "users#create"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created users object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "successful operation"
+    get:
+      tags:
+      - "users"
+      summary: "return all users"
+      description: "This can only be done by the logged in users."
+      operationId: "users#index"
+      produces:
+
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+  /users/{id}:
+    get:
+      tags:
+      - "users"
+      summary: "Get users by users id"
+      description: ""
+      operationId: "users#show"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "The id that needs to be fetched. Use user1 for testing. "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        404:
+          description: "User not found"
+    put:
+      tags:
+      - "users"
+      summary: "Updated users"
+      description: "update users"
+      operationId: "users#update"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated users object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        400:
+          description: "Invalid users supplied"
+        404:
+          description: "User not found"
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/User"
+    delete:
+      tags:
+      - "users"
+      summary: "Delete users"
+      operationId: "delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "integer"
+      responses:
+        404:
+          description: "User not found"
+
+  /adoption_requests:
+    post:
+      tags:
+      - "adoption request"
+      summary: "Create adoption request"
+      description: "Create adoption request"
+      operationId: "adoption_requests#create"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created adoption request object"
+        required: true
+        schema:
+          $ref: "#/definitions/AdoptionRequest"
+      responses:
+        201:
+          description: "successful operation"
+    get:
+      tags:
+      - "adoption request"
+      summary: "return all adoption request"
+      description: "This can only be done by the logged in adoption request."
+      operationId: "adoption_requests#index"
+      produces:
+
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AdoptionRequest"
+
+
+  /adoption_requests/{id}:
+    get:
+      tags:
+      - "adoption requests"
+      summary: "Get adoption request by adoption_requests id"
+      description: "Get adoption request by adoption_requests id"
+      operationId: "adoption_requests#show"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "adoption request id "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/AdoptionRequest"
+        404:
+          description: "adoption request not found"
+    put:
+      tags:
+      - "adoption requests"
+      summary: "Updated adoption request"
+      description: "adoption request users"
+      operationId: "adoption_requests#update"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated adoption_requests object"
+        required: true
+        schema:
+          $ref: "#/definitions/AdoptionRequest"
+      responses:
+        422: 
+          description: ""
+        402:
+          description: "adoption requests not found"
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/AdoptionRequest"
+    delete:
+      tags:
+      - "adoption requests"
+      summary: "Delete adoption request"
+      operationId: "adoption_requests#delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be deleted"
+        required: true
+        type: "integer"
+      responses:
+        404:
+          description: "adoption request not found"
+    
+  /shelters:
+    post:
+      tags:
+      - "shelters"
+      summary: "Create shelters"
+      description: "Create shelters"
+      operationId: "shelters#create"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created shelters object"
+        required: true
+        schema:
+          $ref: "#/definitions/Shelter"
+      responses:
+        201:
+          description: "successful operation"
+    get:
+      tags:
+      - "shelters"
+      summary: "return all shelters"
+      description: "return all shelters"
+      operationId: "shelters#index"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Shelter"
+  
+  /shelters/{id}:
+    get:
+      tags:
+      - "shelters"
+      summary: "Get shelters by id"
+      description: "Get shelters by  id"
+      operationId: "shelters#show"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "shelters id "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Shelter"
+        404:
+          description: "Shelter not found"
+    put:
+      tags:
+      - "shelters"
+      summary: "Update shelters"
+      description: "update shelters"
+      operationId: "shelters#update"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated shelters object"
+        required: true
+        schema:
+          $ref: "#/definitions/Shelter"
+      responses:
+        422:
+          description: ""
+        404:
+          description: "shelter not found"
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Shelter"
+    delete:
+      tags:
+      - "shelters"
+      summary: "Delete shelter"
+      operationId: "shelters#delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be deleted"
+        required: true
+        type: "integer"
+      responses:
+        404:
+          description: "shelters not found"
+
+  /shelters/{id}/animals:
+    get:
+      tags:
+        - "shelters"
+        - "animals"
+    
+      summary: "return all animals of a shelter"
+      operationId: "animals#index"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "shelters id "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Animal"
+        404:
+          description: "Shelter not found"
+
+  /shelters/{id}/animals/{animal_id}/remove:
+    delete:
+      tags:
+        - "shelters"
+        - "animals"
+      summary: "delete an animal from the shelter list"
+      operationId: "shelters#remove_animal"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "shelters id "
+        required: true
+        type: "integer"
+      - name: "animal_id"
+        in: path
+        description: "animal id to be removed"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Animal"
+        404:
+          description: ""
+  /shelters/{id}/adoption_requests:
+    get:
+      tags: 
+      - "shelters"
+      - "adopotion requests"
+      summary: "returns all the adoption request for the animals residing in shelter"
+      operationId: "adoption_requests#get_shelter_requests"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "shelters id "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/AdoptionRequest"
+        404:
+          description: "shelter not found"
+  /workers:
+    post:
+      tags:
+      - "workers"
+      summary: "Create worker"
+      operationId: "workers#create"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created workers object"
+        required: true
+        schema:
+          $ref: "#/definitions/Worker"
+      responses:
+        201:
+          description: "successful operation"
+    get:
+      tags:
+      - "workers"
+      summary: "return all workers"
+      operationId: "workers#index"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Worker"
+
+  /workers/{id}:
+    get:
+      tags:
+      - "workers"
+      summary: "Get workers by id"
+      operationId: "workers#show"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: path
+        description: "worker id "
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Worker"
+        404:
+          description: "worker not found"
+    put:
+      tags:
+      - "workers"
+      summary: "Update worker"
+      operationId: "workers#update"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "id that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated workers object"
+        required: true
+        schema:
+          $ref: "#/definitions/Worker"
+      responses:
+        422:
+          description: ""
+        404:
+          description: "worker not found"
+        200:
+          description: ""
+          schema:
+            $ref: "#/definitions/Worker"
+    delete:
+      tags:
+      - "workers"
+      summary: "Delete worker"
+      operationId: "workers#delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "The id that needs to be deleted"
+        required: true
+        type: "integer"
+      responses:
+        404:
+          description: "worker not found"
+  
+
+  
+  
+definitions:
+  
+  AdoptionRequest:
+    type: "object"
+    properties:
+      user_id:
+        type: "integer"
+      animal_id:
+        type: "integer"
+
+  Shelter:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      location:
+        type: "string"
+      name: 
+        type: "string"
+  Worker:
+    type: "object"
+    properties:
+      age:
+        type: "integer"
+      first_name: 
+        type: "string"
+      last_name:
+        type: "string"
+      shelter_id: 
+        type: "integer"
+  User:
+    properties:
+      first_name: 
+        type: "string"
+      last_name:
+        type: "string"
+      description:
+        type: "string"
+    
+  
+  Animal:
+    type: "object"
+    required:
+    - "temp_name"
+    - "status"
+    properties:
+      id:
+        type: "integer"
+      temp_name:
+        type: "string"
+        example: "doggie"
+      madical_condition:
+        type: "string"
+        example: "healthy"
+      image_url:
+        type: "string"
+      status:
+        type: "string"
+        description: "animal status in the store"
+        enum:
+        - "adoptable"
+        - "unadoptable"
+      shelter_id:
+        type: "integer"
+ 
