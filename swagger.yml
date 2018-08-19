@@ -15,7 +15,6 @@ paths:
       tags:
       - "animals"
       summary: "Add a new aniamal"
-      description: ""
       operationId: "animals#create"
       consumes:
       - "application/json"
@@ -39,7 +38,6 @@ paths:
       tags:
       - "animals"
       summary: "get all animals"
-      description: ""
       operationId: "index"
       consumes:
       - "application/json"
@@ -65,7 +63,6 @@ paths:
       tags:
       - "animals"
       summary: "Find animal by ID"
-      description: "Returns a single animal"
       operationId: "animals#show"
       produces:
       - "application/json"
@@ -87,7 +84,6 @@ paths:
       tags:
       - "animals"
       summary: "Updates a animal in the store with form data"
-      description: ""
       operationId: "animals#update"
       consumes:
       - "application/json"
@@ -118,7 +114,6 @@ paths:
       tags:
       - "animals"
       summary: "Deletes a animal"
-      description: ""
       operationId: "animals#delete"
       produces:
       - "application/json"
@@ -139,7 +134,6 @@ paths:
       tags:
         - "animals"
       summary: "mark animal as adoptable"
-      description: "marks animal as adoptable"
       operationId: "animals#make_adoptable"
       produces:
         - "application/json"
@@ -162,7 +156,6 @@ paths:
       tags: 
       - "animals"
       summary: "remove a adoption requests of an animal"
-      description: "remove a adoption requests of an animal"
       operationId: "animals#remove_request"
       produces:
         - "application/json"
@@ -192,7 +185,6 @@ paths:
       tags:
       - "users"
       summary: "Create users"
-      description: "This can only be done by the logged in users."
       operationId: "users#create"
       produces:
       - "application/json"
@@ -212,7 +204,6 @@ paths:
       tags:
       - "users"
       summary: "return all users"
-      description: "This can only be done by the logged in users."
       operationId: "users#index"
       produces:
 
@@ -229,7 +220,6 @@ paths:
       tags:
       - "users"
       summary: "Get users by users id"
-      description: ""
       operationId: "users#show"
       produces:
       - "application/json"
@@ -250,7 +240,6 @@ paths:
       tags:
       - "users"
       summary: "Updated users"
-      description: "update users"
       operationId: "users#update"
       produces:
       - "application/json"
@@ -297,7 +286,6 @@ paths:
       tags:
       - "adoption request"
       summary: "Create adoption request"
-      description: "Create adoption request"
       operationId: "adoption_requests#create"
       produces:
       - "application/json"
@@ -317,7 +305,6 @@ paths:
       tags:
       - "adoption request"
       summary: "return all adoption request"
-      description: "This can only be done by the logged in adoption request."
       operationId: "adoption_requests#index"
       produces:
 
@@ -336,7 +323,6 @@ paths:
       tags:
       - "adoption requests"
       summary: "Get adoption request by adoption_requests id"
-      description: "Get adoption request by adoption_requests id"
       operationId: "adoption_requests#show"
       produces:
       - "application/json"
@@ -357,7 +343,6 @@ paths:
       tags:
       - "adoption requests"
       summary: "Updated adoption request"
-      description: "adoption request users"
       operationId: "adoption_requests#update"
       produces:
       - "application/json"
@@ -368,7 +353,7 @@ paths:
         required: true
         type: "string"
       - in: "body"
-        name: "body"
+        name: "adoption reques"
         description: "Updated adoption_requests object"
         required: true
         schema:
@@ -405,8 +390,7 @@ paths:
     post:
       tags:
       - "shelters"
-      summary: "Create shelters"
-      description: "Create shelters"
+      summary: "Create shelter"
       operationId: "shelters#create"
       produces:
       - "application/json"
@@ -426,7 +410,6 @@ paths:
       tags:
       - "shelters"
       summary: "return all shelters"
-      description: "return all shelters"
       operationId: "shelters#index"
       produces:
       - "application/json"
@@ -443,7 +426,6 @@ paths:
       tags:
       - "shelters"
       summary: "Get shelters by id"
-      description: "Get shelters by  id"
       operationId: "shelters#show"
       produces:
       - "application/json"
@@ -464,7 +446,6 @@ paths:
       tags:
       - "shelters"
       summary: "Update shelters"
-      description: "update shelters"
       operationId: "shelters#update"
       produces:
       - "application/json"
@@ -475,7 +456,7 @@ paths:
         required: true
         type: "string"
       - in: "body"
-        name: "body"
+        name: "shelter"
         description: "Updated shelters object"
         required: true
         schema:
@@ -655,7 +636,7 @@ paths:
         required: true
         type: "string"
       - in: "body"
-        name: "body"
+        name: "worker"
         description: "Updated workers object"
         required: true
         schema:
