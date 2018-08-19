@@ -55,8 +55,6 @@ paths:
           items:
             $ref: "#/definitions/Animal"
       responses:
-        404:
-          description: "Animal not found"
         200:
           description: ""
           schema:
@@ -92,7 +90,7 @@ paths:
       description: ""
       operationId: "animals#update"
       consumes:
-      - "application/x-www-form-urlencoded"
+      - "application/json"
       produces:
       - "application/json"
       parameters:
@@ -101,24 +99,21 @@ paths:
         description: "ID of animal that needs to be updated"
         required: true
         type: "integer"
-      - name: "temp_ame"
-        in: "formData"
-        description: "Updated temporary name of the animal"
+      - in: "body"
+        name: "animal"
+        description: "Updated animal object"
         required: true
-        type: "string"
-      - name: "medical_condition"
-        in: "formData"
-        description: "Updated medical condition of the animal"
-        required: false
-        type: "string"
-      - name: "status"
-        in: "formData"
-        description: "Updated status of the animal"
-        required: false
-        type: "string"
+        schema:
+          $ref: "#/definitions/Animal"
       responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Animal"
         422:
           description: ""
+        404:
+          description: "animal not found"
     delete:
       tags:
       - "animals"
@@ -135,6 +130,8 @@ paths:
         type: "integer"
 
       responses:
+        200:
+          description: "successful operation"
         404:
           description: "Animal not found"
   /animals/{id}/adoptable:
@@ -157,6 +154,8 @@ paths:
           description: "animal is adoptable"
         422:
           description: ""
+        404:
+          description: "Animal not found"
 
   /animals/{id}/adoption_requests/{adoption_request_id}/remove:
     delete:
@@ -182,6 +181,10 @@ paths:
         200:
           description:
             "adoption request deleted"
+        422:
+          description: ""
+        404:
+          description: "Animal not found"
 
 
   /users:
@@ -203,6 +206,8 @@ paths:
       responses:
         201:
           description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
     get:
       tags:
       - "users"
@@ -215,6 +220,10 @@ paths:
       responses:
         200:
           description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
   /users/{id}:
     get:
       tags:
@@ -252,14 +261,14 @@ paths:
         required: true
         type: "string"
       - in: "body"
-        name: "body"
+        name: "user"
         description: "Updated users object"
         required: true
         schema:
           $ref: "#/definitions/User"
       responses:
-        400:
-          description: "Invalid users supplied"
+        422:
+          description: ""
         404:
           description: "User not found"
         200:
@@ -302,6 +311,8 @@ paths:
       responses:
         201:
           description: "successful operation"
+          schema:
+            $ref: "#/definitions/AdoptionRequest"
     get:
       tags:
       - "adoption request"
@@ -365,10 +376,10 @@ paths:
       responses:
         422: 
           description: ""
-        402:
+        404:
           description: "adoption requests not found"
         200:
-          description: ""
+          description: "successful operation"
           schema:
             $ref: "#/definitions/AdoptionRequest"
     delete:
@@ -385,6 +396,8 @@ paths:
         required: true
         type: "integer"
       responses:
+        200:
+          description: "successful operation"
         404:
           description: "adoption request not found"
     
@@ -407,6 +420,8 @@ paths:
       responses:
         201:
           description: "successful operation"
+          schema:
+            $ref: "#/definitions/Shelter"
     get:
       tags:
       - "shelters"
@@ -588,6 +603,8 @@ paths:
       responses:
         201:
           description: "successful operation"
+          schema:
+            $ref: "#/definitions/Worker"
     get:
       tags:
       - "workers"
@@ -666,6 +683,8 @@ paths:
         required: true
         type: "integer"
       responses:
+        200:
+          description: "successful operation"
         404:
           description: "worker not found"
   
